@@ -39,6 +39,7 @@ module Sidekiq::Status
     rescue Worker::Stopped
       store_status worker.jid, :stopped, @expiration
     rescue
+      puts worker.inspect
       store_status worker.jid, :failed,  @expiration
       raise
     end
